@@ -13,11 +13,11 @@ const getProducts = async ({ response }: { response: any }) => {
 
         const result = await client.query("SELECT * FROM products")
 
-        const products = new Array()
+        const products = new Array<Product>()
 
         result.rows.map(p => {
-            let obj: any = new Object()
-
+            let obj = <Product>{} 
+            
             result.rowDescription.columns.map((el, i) => {
                 obj[el.name] = p[i]
             })
@@ -56,7 +56,7 @@ const getProduct = async ({ params, response }: { params: { id: string }, respon
             }
             return;
         } else {
-            const product: any = new Object()
+            const product = <Product>{}
 
             result.rows.map(p => {
                 result.rowDescription.columns.map((el, i) => {
